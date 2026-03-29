@@ -1,6 +1,6 @@
 app-id: io.github.AhmadTakkoush.QuranRadio
 runtime: org.gnome.Platform
-runtime-version: '47'
+runtime-version: '48'
 sdk: org.gnome.Sdk
 
 command: quran-radio
@@ -9,7 +9,7 @@ command: quran-radio
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
-    version: '23.08'
+    version: '24.08'
     add-ld-path: .
     no-autodownload: false
     autodelete: false
@@ -18,7 +18,6 @@ finish-args:
   - --share=network               # stream audio over the internet
   - --socket=pulseaudio           # audio output (works with PipeWire-Pulse too)
   - --talk-name=org.kde.StatusNotifierWatcher   # system tray (SNI protocol)
-  - --filesystem=xdg-config/quran-radio:create  # persist station/volume config
 
 modules:
   # Create the ffmpeg extension directory expected by the extension point
@@ -51,5 +50,6 @@ modules:
 
     sources:
       - type: git
-        url: https://github.com/AhmadTakkoush/quran-karim-radio.git
-        branch: main
+        url: https://github.com/AhmadTakkoush/quranradio.git
+        tag: v1.0.0
+        commit: placeholder

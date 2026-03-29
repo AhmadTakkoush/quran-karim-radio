@@ -17,7 +17,10 @@ import urllib.request
 # ── Paths ──────────────────────────────────────────────────────────────────────
 APP_DIR     = os.path.dirname(os.path.abspath(__file__))
 ICON_PATH   = os.path.join(APP_DIR, "icon.png")
-CONFIG_DIR  = os.path.expanduser("~/.config/quran-radio")
+CONFIG_DIR  = os.path.join(
+    os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config")),
+    "quran-radio",
+)
 CONFIG_FILE = os.path.join(CONFIG_DIR, "config.json")
 
 # ── Stations ───────────────────────────────────────────────────────────────────
