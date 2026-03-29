@@ -51,5 +51,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/AhmadTakkoush/quranradio.git
-        tag: v1.0.0
-        commit: babb5c66adbb39693de0b6803c209c748c0804d9
+        tag: v1.0.1
+        commit: 920e7f2ec29d346a9eb32dee73aa56ec7661ae19

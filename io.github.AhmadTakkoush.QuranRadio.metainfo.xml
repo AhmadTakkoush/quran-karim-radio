@@ -37,15 +37,20 @@
   <screenshots>
     <screenshot type="default">
       <caption>Tray menu showing station selection and play control</caption>
-      <image>https://raw.githubusercontent.com/AhmadTakkoush/quran-karim-radio/main/screenshots/tray-menu.png</image>
+      <image>https://raw.githubusercontent.com/AhmadTakkoush/quranradio/main/screenshots/tray-menu.png</image>
     </screenshot>
     <screenshot>
       <caption>Volume controls popup window</caption>
-      <image>https://raw.githubusercontent.com/AhmadTakkoush/quran-karim-radio/main/screenshots/volume-popup.png</image>
+      <image>https://raw.githubusercontent.com/AhmadTakkoush/quranradio/main/screenshots/volume-popup.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="1.0.1" date="2026-03-29">
+      <description>
+        <p>Update screenshots and clean up repository.</p>
+      </description>
+    </release>
     <release version="1.0.0" date="2026-03-29">
       <description>
         <p>Initial release.</p>
