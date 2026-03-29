@@ -3,6 +3,8 @@
 A lightweight Linux system tray app for PopOS (GNOME) that streams two
 Quran radio stations directly from the top panel bar.
 
+![Tray menu](screenshots/tray-menu.png)
+
 ## Features
 
 - Sits in the GNOME top panel via AppIndicator3
@@ -14,11 +16,17 @@ Quran radio stations directly from the top panel bar.
 - Auto-verifies the Cairo stream URL at startup and falls back if unreachable
 - Graceful 8-second connection timeout with error message
 
-## Requirements
+## Install
 
-PopOS 22.04 / Ubuntu 22.04+ with GNOME Shell.
+### Flatpak (recommended)
 
-## Quick Install
+Once approved on Flathub:
+
+```bash
+flatpak install flathub io.github.AhmadTakkoush.QuranRadio
+```
+
+### Quick Install (native)
 
 ```bash
 chmod +x install.sh
@@ -28,35 +36,28 @@ chmod +x install.sh
 `install.sh` will:
 1. Install all apt dependencies
 2. Copy the app to `/opt/quran-radio/`
-3. Generate `icon.png` (requires Pillow — installed automatically)
-4. Register `~/.config/autostart/quran-radio.desktop` so the app starts on login
-5. Create a `/usr/local/bin/quran-radio` launcher
+3. Register `~/.config/autostart/quran-radio.desktop` so the app starts on login
+4. Create a `/usr/local/bin/quran-radio` launcher
 
-## Manual Install
+### Manual Install
 
-### 1. Install dependencies
+#### 1. Install dependencies
 
 ```bash
-sudo apt install python3-gi python3-gi-cairo python3-pil \
+sudo apt install python3-gi python3-gi-cairo \
      gir1.2-gtk-3.0 gir1.2-appindicator3-0.1 \
      gir1.2-gst-plugins-base-1.0 \
      gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
      gstreamer1.0-libav
 ```
 
-### 2. Generate the icon
-
-```bash
-python3 create_icon.py
-```
-
-### 3. Run
+#### 2. Run
 
 ```bash
 python3 quran_radio.py
 ```
 
-### 4. Autostart on login (optional)
+#### 3. Autostart on login (optional)
 
 ```bash
 mkdir -p ~/.config/autostart
