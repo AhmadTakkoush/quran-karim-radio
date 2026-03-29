@@ -103,67 +103,57 @@ def save_offscreen(widget, path, padding=0):
 
 # ── Screenshot 1: Tray dropdown menu ──────────────────────────────────────────
 def make_tray_menu() -> Gtk.Widget:
-    """Simulate the SNI dbusmenu as a GTK widget."""
+    """Simulate the tray dropdown as a GTK widget matching the popup style."""
 
-    STATIONS = [
-        ("Quran Kareem — Beirut",           True),   # selected
-        ("Quran Kareem — Cairo (ERTU 98.2 FM)", False),
-    ]
+    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+    vbox.set_border_width(14)
+
+    # Title — same as popup
+    title = Gtk.Label(label="Quran Radio 📻")
+    title.get_style_context().add_class("title")
+    title.set_halign(Gtk.Align.CENTER)
+    vbox.pack_start(title, False, False, 4)
+
+    vbox.pack_start(Gtk.Separator(), False, False, 2)
+
+    # Station radio buttons — identical to popup window
+    group = None
+    for name, active in [
+        ("Quran Kareem — Beirut",                True),
+        ("Quran Kareem — Cairo (ERTU 98.2 FM)",  False),
+    ]:
+        btn = Gtk.RadioButton.new_with_label_from_widget(group, name)
+        if group is None:
+            group = btn
+        btn.set_active(active)
+        vbox.pack_start(btn, False, False, 0)
+
+    vbox.pack_start(Gtk.Separator(), False, False, 2)
+
+    # Play button — same green style
+    play_btn = Gtk.Button(label="▶  Play")
+    play_btn.get_style_context().add_class("play-btn")
+    vbox.pack_start(play_btn, False, False, 4)
+
+    # Status label
+    status = Gtk.Label(label="Stopped")
+    status.get_style_context().add_class("status")
+    status.set_halign(Gtk.Align.CENTER)
+    vbox.pack_start(status, False, False, 0)
+
+    vbox.pack_start(Gtk.Separator(), False, False, 2)
+
+    # Secondary actions as plain labels
+    for text in ("Volume Controls…", "Quit"):
+        lbl = Gtk.Label(label=text)
+        lbl.set_halign(Gtk.Align.START)
+        lbl.get_style_context().add_class("menu-item")
+        vbox.pack_start(lbl, False, False, 2)
 
     frame = Gtk.Frame()
     frame.set_shadow_type(Gtk.ShadowType.ETCHED_IN)
-
-    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-    vbox.set_border_width(6)
+    frame.set_size_request(300, -1)
     frame.add(vbox)
-
-    def add_sep():
-        sep = Gtk.Separator()
-        vbox.pack_start(sep, False, False, 4)
-
-    def add_row(label_text, is_active=False, indent=False, bold=False):
-        row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        row.set_border_width(2)
-
-        # Radio bullet
-        dot = Gtk.Label(label="●" if is_active else "○")
-        dot.get_style_context().add_class("menu-item")
-        if is_active:
-            dot.get_style_context().add_class("active")
-        row.pack_start(dot, False, False, 4 if indent else 2)
-
-        lbl = Gtk.Label(label=label_text)
-        lbl.set_halign(Gtk.Align.START)
-        lbl.get_style_context().add_class("menu-item")
-        if is_active:
-            lbl.get_style_context().add_class("active")
-        row.pack_start(lbl, True, True, 0)
-        vbox.pack_start(row, False, False, 2)
-
-    def add_action(label_text, icon=""):
-        row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        row.set_border_width(2)
-        if icon:
-            ico = Gtk.Label(label=icon)
-            ico.get_style_context().add_class("menu-item")
-            row.pack_start(ico, False, False, 6)
-        lbl = Gtk.Label(label=label_text)
-        lbl.set_halign(Gtk.Align.START)
-        lbl.get_style_context().add_class("menu-item")
-        row.pack_start(lbl, True, True, 0)
-        vbox.pack_start(row, False, False, 2)
-
-    # Stations
-    for name, active in STATIONS:
-        add_row(name, is_active=active)
-
-    add_sep()
-    add_action("▶  Play", "")
-    add_sep()
-    add_action("Volume Controls…")
-    add_sep()
-    add_action("Quit")
-
     return frame
 
 
