@@ -28,8 +28,9 @@
     <name>Ahmad Takkoush</name>
   </developer>
 
-  <url type="homepage">https://github.com/AhmadTakkoush/quran-karim-radio</url>
-  <url type="bugtracker">https://github.com/AhmadTakkoush/quran-karim-radio/issues</url>
+  <url type="homepage">https://github.com/AhmadTakkoush/quranradio</url>
+  <url type="bugtracker">https://github.com/AhmadTakkoush/quranradio/issues</url>
+  <url type="vcs-browser">https://github.com/AhmadTakkoush/quranradio</url>
 
   <launchable type="desktop-id">io.github.AhmadTakkoush.QuranRadio.desktop</launchable>
 
